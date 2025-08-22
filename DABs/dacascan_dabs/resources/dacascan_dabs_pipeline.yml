@@ -1,0 +1,12 @@
+# The main pipeline for dacascan_dabs
+resources:
+  pipelines:
+    dacascan_dabs_pipeline:
+      name: dacascan_dabs_pipeline
+      target: dacascan_dabs_${bundle.environment}
+      libraries:
+        - notebook:
+            path: ../src/dlt_pipeline.ipynb
+
+      configuration:
+        bundle.sourcePath: /Workspace/${workspace.file_path}/src

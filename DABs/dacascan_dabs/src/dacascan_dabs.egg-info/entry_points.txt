@@ -1,0 +1,3 @@
+[packages]
+main = dacascan_dabs.main:main
+
