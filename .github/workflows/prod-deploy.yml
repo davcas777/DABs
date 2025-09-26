@@ -24,7 +24,7 @@ jobs:
       
     - name: Deploy to Production
       run: |
-        databricks bundle deploy --target prod
+        databricks bundle deploy --target prod --auto-approve
       env:
         DATABRICKS_BUNDLE_ENV: prod
         DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
