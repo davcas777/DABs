@@ -1,0 +1,40 @@
+name: Deploy to Databricks
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+        
+    - name: Install Databricks CLI
+      run: |
+        pip install databricks-cli
+        
+    - name: Configure Databricks CLI
+      run: |
+        echo "${{ secrets.DATABRICKS_CONFIG }}" > ~/.databrickscfg
+      env:
+        DATABRICKS_CONFIG: ${{ secrets.DATABRICKS_CONFIG }}
+        
+    - name: Deploy to Databricks
+      run: |
+        databricks bundle deploy --target dev
+        
+    - name: Run job (on main branch only)
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: |
+        databricks bundle run --target dev
