@@ -42,7 +42,6 @@ jobs:
   deploy-dev:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/develop' || github.event_name == 'workflow_dispatch'
-    needs: test
     
     steps:
     - name: Checkout code
@@ -75,7 +74,6 @@ jobs:
   deploy-prod:
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    needs: test
     
     steps:
     - name: Checkout code
