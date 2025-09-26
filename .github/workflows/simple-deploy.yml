@@ -20,8 +20,12 @@ jobs:
         
     - name: Install Databricks CLI
       run: |
-        # Install the new Databricks CLI that supports bundles
-        pip install databricks-cli[sql,compute,deploy,fs,workspace,iam,secrets,ml,experiments,feature-store,serving,marketplace,vector-search,ai,unity-catalog]
+        # Install the latest Databricks CLI using the official installer
+        curl -fsSL https://raw.githubusercontent.com/databricks/setup-cli/main/install.sh | sh
+        # Add to PATH
+        echo "$HOME/.databricks/bin" >> $GITHUB_PATH
+        # Verify the CLI version and bundle support
+        databricks --version
         
     - name: Configure Databricks CLI
       run: |
