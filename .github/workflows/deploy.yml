@@ -22,13 +22,14 @@ jobs:
         
     - name: Install Databricks CLI
       run: |
-        pip install databricks-cli
+        # Install the new Databricks CLI that supports bundles
+        pip install databricks-cli[sql,compute,deploy,fs,workspace,iam,secrets,ml,experiments,feature-store,serving,marketplace,vector-search,ai,unity-catalog]
         
     - name: Configure Databricks CLI
       run: |
-        echo "${{ secrets.DATABRICKS_CONFIG }}" > ~/.databrickscfg
-      env:
-        DATABRICKS_CONFIG: ${{ secrets.DATABRICKS_CONFIG }}
+        echo "[DEFAULT]" > ~/.databrickscfg
+        echo "host = ${{ secrets.DATABRICKS_HOST }}" >> ~/.databrickscfg
+        echo "token = ${{ secrets.DATABRICKS_TOKEN }}" >> ~/.databrickscfg
         
     - name: Deploy to Databricks
       run: |

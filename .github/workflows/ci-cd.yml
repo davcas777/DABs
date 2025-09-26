@@ -28,7 +28,8 @@ jobs:
     - name: Install dependencies
       run: |
         pip install -r requirements.txt || echo "No requirements.txt found"
-        pip install databricks-cli
+        # Install the new Databricks CLI that supports bundles
+        pip install databricks-cli[sql,compute,deploy,fs,workspace,iam,secrets,ml,experiments,feature-store,serving,marketplace,vector-search,ai,unity-catalog]
         
     - name: Run tests
       run: |
@@ -54,7 +55,8 @@ jobs:
         
     - name: Install Databricks CLI
       run: |
-        pip install databricks-cli
+        # Install the new Databricks CLI that supports bundles
+        pip install databricks-cli[sql,compute,deploy,fs,workspace,iam,secrets,ml,experiments,feature-store,serving,marketplace,vector-search,ai,unity-catalog]
         
     - name: Configure Databricks CLI
       run: |
@@ -86,7 +88,8 @@ jobs:
         
     - name: Install Databricks CLI
       run: |
-        pip install databricks-cli
+        # Install the new Databricks CLI that supports bundles
+        pip install databricks-cli[sql,compute,deploy,fs,workspace,iam,secrets,ml,experiments,feature-store,serving,marketplace,vector-search,ai,unity-catalog]
         
     - name: Configure Databricks CLI
       run: |
