@@ -27,5 +27,5 @@ resources:
           # https://docs.databricks.com/api/workspace/jobs/create#environments-spec
           spec:
             client: "2"
-            dependencies:
-              - ../dist/*.whl
+            # dependencies:
+            #   - ../dist/*.whl
