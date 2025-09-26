@@ -1,0 +1,35 @@
+# This is a Databricks asset bundle definition for github_dabs.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+bundle:
+  name: github_dabs
+  uuid: c98c02b2-5f5a-42bd-ad3e-de3e55a8d175
+
+artifacts:
+  python_artifact:
+    type: whl
+    build: uv build --wheel
+
+include:
+  - resources/*.yml
+  - resources/*/*.yml
+
+targets:
+  dev:
+    # The default target uses 'mode: development' to create a development copy.
+    # - Deployed resources get prefixed with '[dev my_user_name]'
+    # - Any job schedules and triggers are paused by default.
+    # See also https://docs.databricks.com/dev-tools/bundles/deployment-modes.html.
+    mode: development
+    default: true
+    workspace:
+      host: https://adb-520209755093735.15.azuredatabricks.net
+
+  prod:
+    mode: production
+    workspace:
+      host: https://adb-520209755093735.15.azuredatabricks.net
+      # We explicitly deploy to /Workspace/Users/david.cascante@databricks.com to make sure we only have a single copy.
+      root_path: /Workspace/Users/david.cascante@databricks.com/.bundle/${bundle.name}/${bundle.target}
+    permissions:
+      - user_name: david.cascante@databricks.com
+        level: CAN_MANAGE
