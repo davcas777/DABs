@@ -21,7 +21,7 @@ jobs:
       
     - name: Deploy to Development
       run: |
-        databricks bundle deploy --target dev
+        databricks bundle deploy --target dev --auto-approve
       env:
         DATABRICKS_BUNDLE_ENV: dev
         DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
