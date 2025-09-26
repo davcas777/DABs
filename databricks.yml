@@ -4,10 +4,10 @@ bundle:
   name: github_dabs
   uuid: c98c02b2-5f5a-42bd-ad3e-de3e55a8d175
 
-artifacts:
-  python_artifact:
-    type: whl
-    build: uv build --wheel
+# artifacts:
+#   python_artifact:
+#     type: whl
+#     build: uv build --wheel
 
 include:
   - resources/*.yml
