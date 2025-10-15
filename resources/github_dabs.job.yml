@@ -20,6 +20,7 @@ resources:
             notebook_path: ../src/hello_world.ipynb
 
       # A list of task execution environment specifications that can be referenced by tasks of this job.
+      # Updated: October 15, 2025
       environments:
         - environment_key: default
 
